@@ -1,0 +1,23 @@
+{% extends 'blog/base.html'%}
+
+{% block content%}
+<form action="{%url 'logout'%}", method="POST">
+    {% csrf_token %}
+    <br/>
+    <div class="card">
+        <div class="card-body">
+            <p>are you sure you want to delete <b>{{obj}}</b>?</p>
+
+
+            <a href="{{request.META.HTTP_REFERER}}" class="btn btn-warning">Go back</a>
+
+            <a action="{% url 'home'%}" class="btn btn-danger">Confirm</a>
+            
+        </div>
+    </div>
+
+</form>
+
+
+
+{%endblock%}

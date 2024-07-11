@@ -1,0 +1,23 @@
+{% extends 'blog/base.html'%}
+
+{% block content%}
+<form action="", method="POST">
+    {% csrf_token %}
+    <br/>
+    <div class="card">
+        <div class="card-body">
+            <p>are you sure you want to delete <b>{{obj}}</b>?</p>
+
+
+            <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go back</a>
+
+            <input type="submit" value="Confirm" class="btn btn-dark">
+            
+        </div>
+    </div>
+
+</form>
+
+
+
+{%endblock%}

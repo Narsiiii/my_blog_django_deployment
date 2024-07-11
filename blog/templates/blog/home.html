@@ -1,0 +1,38 @@
+{% extends 'blog/base.html'%}
+{% block content %}
+
+
+{% if user.is_authenticated%}
+    <div class="rooms">
+        <div><br/>
+            <a href="{% url 'create-room'%}" class="btn btn-primary">Create Room</a>
+            <a href="{% url 'create-topic'%}" class="btn btn-primary">Create Topic</a>
+        </div><br/><br/>
+
+            <div class="room-contents">
+                {% for room in rooms %}
+                    <div class="card">
+                        <div class="card-body">
+                                <span>@{{room.host}}</span>
+                                <h3><a href="{% url 'room' room.id %}">{{room.name}}</a></h3><br>
+
+                                {% if request.user == room.host%}
+                                <a href="{% url 'update-room' room.id %}" class="btn btn-secondary">Update</a>
+                                <a href="{% url 'delete-room' room.id %}"  class="btn btn-dark">Delete</a>
+                                {%endif%}
+
+                        </div>
+                    </div><br/>
+                {% endfor%}
+            </div>
+    </div>
+
+
+{%else%}
+<br/>
+    <h3>You don't have nothing to see, unless you <a href="{% url 'login'%}" class="btn btn-primary">Login</a></h3>
+{% endif%}
+
+
+    
+{% endblock %}

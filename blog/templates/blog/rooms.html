@@ -1,0 +1,49 @@
+{% extends 'blog/base.html'%}
+{% block content%}
+
+<!-- <style>
+    .rooms-contents{
+        color: black;
+    }
+</style> -->
+<br/>
+    <div class="rooms-contents">
+        <div class="card">
+            <div class="card-body">
+                    <h1>{{room.name}}</h1>
+                    <p>{{room.description}}</p>
+                    <p>{{room.topic}} by <b>{{room.host}}</b></p>
+                    <p><small>{{room.created}}</small></p>
+                    <br>  
+                    {% if request.user == room.host%}
+                        <a href="{% url 'update-room' room.id %}" class="btn btn-secondary">Update</a>
+                        <a href="{% url 'delete-room' room.id %}"  class="btn btn-dark">Delete</a>
+                    {%endif%}
+            </div>
+        </div>
+
+    <div class="room-comments"><br/>
+        <h3>comments:</h3>
+        {%for comment in comments%}
+            <div class="card">
+                <div class="card-body">
+                    <small>@{{comment.user}} {{comment.created|timesince}} ago</small>
+                    <p>{{comment.body}}</p>
+                </div>
+            </div><br/>
+        {%endfor%}
+
+    </div>
+</div>
+
+    <footer>
+        <div class="comments-form">
+            <form method="POST" action="">
+                {%csrf_token%}
+                <input type="text", name="body" placeholder="Comment here.."/>
+            </form>
+        </div>
+    </footer>
+
+
+{%endblock%}

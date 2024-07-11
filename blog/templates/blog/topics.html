@@ -1,0 +1,24 @@
+
+{% extends 'blog/base.html'%}
+
+{%block content%}
+
+<br/>
+{% for topic in topics%}
+<div class="card">
+    <div class="card-body">
+        <div class="room-form">
+            <form action="">
+                <h3>Topic name:
+                    
+                    {{topic.name}}
+
+                    <a href=""  class="btn btn-dark">Delete</a>
+                    
+                </h3>
+        </div>
+    </div>
+</div>
+{%endfor%}
+
+{%endblock%}

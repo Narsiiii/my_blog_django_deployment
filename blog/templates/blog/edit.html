@@ -1,0 +1,26 @@
+{% extends 'blog/base.html'%}
+
+{%block content%}
+<br/>
+<div class="card">
+    <div class="card-body">
+        <div class="room-form">
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="mb-3">
+                    Edit Room:
+                    
+                    {{form.as_p}}
+
+                    <p>are you sure you want to make changes? <b>{{obj}}</b>?</p>
+
+
+                    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-secondary">Go back</a>
+        
+                    <input type="submit" value="Confirm" class="btn btn-dark">
+                    
+        </div>
+    </div>
+</div>
+
+{%endblock%}
